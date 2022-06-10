@@ -1,0 +1,6 @@
+kies een van de 5 opties:
+1. new_file
+2. ls
+3. src
+4. find
+5. seek
