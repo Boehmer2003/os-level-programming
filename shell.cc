@@ -1,7 +1,7 @@
 #include "shell.hh"
 
-int main()
-{ std::string input;
+int main(){ 
+    std::string input;
     std::string prompt = ""; // De string die wordt uitgeprint.
     int fd = syscall(SYS_open, "prompt.txt", O_RDONLY, 0755); // open; bestandsnaam; read only; permisions.
 
@@ -27,23 +27,21 @@ int main()
 
         if (std::cin.eof()) return 0; 
     }
-}      // EOF is een exit
+}      
 
 void new_file(){ 
     std::string bestandsnaam = "";
     std::string tekst = "";
     std::string regel = "";
 
-    std::cout << "Bestandsnaam: ";
+    std::cout << "naam voor je bestand: ";
     std::getline(std::cin, bestandsnaam);
 
-    // const voor geen aangebrachte veranderingen. * = pointer: c_str zet om.
     const char* bestand[] = {bestandsnaam.c_str()};
 
-    // Maakt een bestand aan met naam bestandsnaam
     int fd = syscall(SYS_creat, bestand[0], 0755);
 
-    std::cout << "Tekst: (EOF om af te sluiten)";
+    std::cout << "tekst voor je bestand";
 
     while(std::getline(std::cin, tekst)){
         if(tekst == "<EOF>"){
@@ -68,15 +66,12 @@ void list(){
 }
 
 void find(){
-    // input vanuit de commandline
-    std::cout << "Input: ";
+    std::cout << "wta wil je vinden: ";
     std::string find_char = "";
     std::getline(std::cin, find_char);
-    // Pipe setup
-    int fd[2]; // Hoeveel pipes
+    int fd[2]; 
     syscall(SYS_pipe, &fd);
     if(syscall(SYS_fork) == 0){
-        // Koppeling uitvoer huidig proces aan invoer pipe
         syscall(SYS_close, fd[0]);
         syscall(SYS_dup2, fd[1], 1);
         
@@ -89,7 +84,6 @@ void find(){
 
     if(syscall(SYS_fork) == 0){
         
-        // Koppeling uitvoer pipe aan invoer huidige proces
         syscall(SYS_close, fd[1]);
         syscall(SYS_dup2, fd[0], 0);
     
@@ -103,7 +97,7 @@ void find(){
     }
 }
 
-void seek(){ // ToDo: Implementeer volgens specificatie.
+void seek(){ 
     int seek = syscall(SYS_creat, "seek", 0755);
     int loop = syscall(SYS_creat, "loop", 0755);
 
