@@ -1,30 +1,28 @@
 #include <iostream>
 #include <string>
 
-int tell(std::string line, std::string argument){
-    int tell=0;
-    for(int length=0;length<line.length();length++){
-        if (line[length]==argument[0]){
-            tell++;
-
-        }
-    }
-    return tell;
+char count(std::string line, char argument){
+  int count = 0;
+  for(unsigned int i=0 ; i < line.size() ; i++ ){
+    if(line[i] == argument){
+      count += 1;
+    };
+  };
+  char result = char(count);
+  return result;
 }
-
 
 int main(int argc, char *argv[]){
-    std::string line,letter;
+  std::string line;
 
-    while(true) {
-        std::cout<<"welke woord wil je gebruiken?"<<std::endl;
-        std::getline(std::cin, line);
-        std::cout<<"welke letter wil je tellen?"<<std::endl;
-        std::getline(std::cin, letter);
-        std::cout << tell(line, letter) << std::endl;
-    }
+  if(argc != 2){
+    std::cerr << "Deze functie heeft exact 1 argument nodig" << std::endl>
+    return -1;
+  }
 
-    return 0;
+  while(std::getline(std::cin, line)){
+    std::cout << count(line, argv[1]) << std::endl;
+  }
+
+  return 0;
 }
-
-
