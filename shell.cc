@@ -2,7 +2,7 @@
 
 int main(){ 
     std::string input;
-    std::string prompt = ""; // De string die wordt uitgeprint.
+    std::string prompt; // De string die wordt uitgeprint.
     int fd = syscall(SYS_open, "prompt.txt", O_RDONLY, 0755); // open; bestandsnaam; read only; permisions.
 
     // maakt een variable byte datatype char van de grootte 1 byte. 
@@ -30,9 +30,9 @@ int main(){
 }      
 
 void new_file(){ 
-    std::string bestandsnaam = "";
-    std::string tekst = "";
-    std::string regel = "";
+    std::string bestandsnaam;
+    std::string tekst;
+    std::string regel;
 
     std::cout << "naam voor je bestand: ";
     std::getline(std::cin, bestandsnaam);
