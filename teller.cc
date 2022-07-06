@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
   std::string line;
 
   if(argc != 2){
-    std::cerr << "Deze functie heeft exact 1 argument nodig" << std::endl>
+    std::cerr << "Deze functie mag maar 1 argument hebben" << std::endl>
     return -1;
   }
 
